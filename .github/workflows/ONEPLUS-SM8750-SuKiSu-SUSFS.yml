@@ -7,13 +7,14 @@ on:
         required: true
         default: 'sm8750'
       FEIL:
+        type: choice
         description: "配置文件"
         required: true
         default: 'oneplus_13'
-        type: choice
-        options: 
-         -oneplus_13
-         -oneplus_ace5_pro
+        options:
+          - oneplus_13
+          - oneplus_ace5_pro
+          
       CPUD:
         description: "处理器代号"
         required: true
@@ -90,7 +91,7 @@ jobs:
       - name: Initialize repo and sync
         run: |
          mkdir kernel_workspace && cd kernel_workspace
-         repo init -u https://github.com/JiuGeFaCai/kernel_manifest.git -b refs/heads/oneplus/${{ github.event.inputs.CPU }} -m ${{ github.event.inputs.FEIL }}.xml --depth=1
+         repo init -u https://github.com/HanKuCha/kernel_manifest.git -b refs/heads/oneplus/${{ github.event.inputs.CPU }} -m ${{ github.event.inputs.FEIL }}.xml --depth=1
          repo --trace sync -c -j$(nproc --all) --no-tags
          rm kernel_platform/common/android/abi_gki_protected_exports_* || echo "No protected exports!"
          rm kernel_platform/msm-kernel/android/abi_gki_protected_exports_* || echo "No protected exports!"
