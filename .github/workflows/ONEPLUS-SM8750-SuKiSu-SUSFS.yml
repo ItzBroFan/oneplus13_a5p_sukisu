@@ -10,6 +10,10 @@ on:
         description: "配置文件"
         required: true
         default: 'oneplus_13'
+        type: choice
+        options: 
+         -oneplus_13
+         -oneplus_ace5_pro
       CPUD:
         description: "处理器代号"
         required: true
